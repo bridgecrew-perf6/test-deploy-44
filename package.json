@@ -2,7 +2,7 @@
   "name": "test1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf migrations && rm -rf build",
@@ -10,7 +10,7 @@
     "dev": "nodemon",
     "pull": "npx prisma db pull",
     "push": "npx prisma db push",
-    "start": "NODE_ENV=production node build/index.js",
+    "start": "NODE_ENV=production node build/server.js",
     "build": "export NODE_OPTIONS=--max_old_space_size=1500 && tsc --resolveJsonModule --esModuleInterop"
   },
   "repository": {

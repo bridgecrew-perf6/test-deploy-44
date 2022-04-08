@@ -4,8 +4,11 @@ import swaggerJsDoc from "swagger-jsdoc";
 // swagger-ui-express 와 swagger-jsdoc => api 명세 관련 모듈
 import * as helmet from "helmet";
 // helmet => 보안 관련 모듈
+import path from "path";
 
 const app = express();
+
+
 
 app.use(helmet.contentSecurityPolicy());
 app.use(helmet.crossOriginEmbedderPolicy());
@@ -22,6 +25,8 @@ app.use(helmet.originAgentCluster());
 app.use(helmet.permittedCrossDomainPolicies());
 app.use(helmet.referrerPolicy());
 app.use(helmet.xssFilter());
+
+
 
 const options = {
     swaggerDefinition: {
@@ -44,15 +49,22 @@ const swaggerDoc = swaggerJsDoc(options);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
+
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+
+app.use(express.static(path.join(__dirname, "/public")));
+
 
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin","*");
     res.header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, HEAD, OPTIONS");
-    //res.header("Access-Control-Allow-Headers","content-type, x-access-token, access-type, Authorization, authorization");
+    res.header("Access-Control-Allow-Headers","content-type, x-access-token, access-type, Authorization, authorization");
+    next();
 })
+
+
 
 const url = "/api/v1";
 
