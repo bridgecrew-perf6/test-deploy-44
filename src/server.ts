@@ -51,7 +51,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin","*");
     res.header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, HEAD, OPTIONS");
-    res.header("Access-Control-Allow-Headers","content-type, x-access-token, access-type, Authorization, authorization");
+    //res.header("Access-Control-Allow-Headers","content-type, x-access-token, access-type, Authorization, authorization");
 })
 
 const url = "/api/v1";
